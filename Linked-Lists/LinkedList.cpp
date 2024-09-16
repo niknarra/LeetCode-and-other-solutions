@@ -428,4 +428,42 @@ Node* addValueAtTarget(Node* head, int value, int target){
     return head; // Return the unchanged head if the target doesn't exist in the list
 }
 
-//
+// Function to REVERSE a LL (Stack Approach - O(n) Space)
+
+Node* reverseList(Node* head){ 
+
+  if(head == nullptr){ // Check if the list is empty
+
+    return nullptr; // Return nullptr and exit
+  }
+
+  if(head->next == nullptr){ // Check if the list has only one node
+
+    return head; // Return the head node
+  }
+  
+  stack<int> st; // Declare a stack to store the elements of the linked list
+
+  Node* curr = head; // Set the current node to the head of the linked list
+
+  while(curr != nullptr){ // Iterate through the linked list
+
+    st.push(curr->data); // Push the data of the current node onto the stack
+
+    curr = curr->next; // Move to the next node
+  }
+  curr = head; // Reset the current node to the head of the linked list
+
+  while(!st.empty()){ // Iterate through the stack
+
+    curr->data = st.top(); // Set the data of the current node to the top of the stack
+
+    st.pop(); // Pop the top element from the stack
+
+    curr = curr->next; // Move to the next node
+  }
+
+  return head; // Return the head of the linked list
+}
+
+
