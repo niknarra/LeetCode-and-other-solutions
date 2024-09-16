@@ -214,4 +214,218 @@ Node* delHead(Node* head){
     delete head; // Free up the memory
     
     return newHead; // Return new head and exit
-}  
+}
+
+// Function to DELETE a node at a GIVEN POSITION
+
+Node* delElementAtPos(Node* head, int pos){
+    
+    Node* curr = head; // Setting the current node to be the head
+    Node* prev = nullptr;
+    int curr_index = 0;
+    
+    if(curr == nullptr){ // Checking if the list is empty
+
+        return nullptr; // Return nullptr and exit
+
+    }
+    
+    if(pos == 0){ // If the position is 0 which is head, we need to move head by 1
+
+        Node* temp = head; // Set a temp variable to be head
+
+        head = head -> next; // Move head to the next element
+
+        delete temp; // Delete and free the memory of old head
+
+        return head; // Return the head and exit
+
+    }
+    
+    while(curr->next!=nullptr){ // While the current is not nullptr 
+
+        if(pos == curr_index){ // Check is current index is the position asked to remove from
+
+            prev->next = curr->next; // Then chain the previous and the next nodes
+
+            delete curr; // Delete the current Node and free memory
+
+            return head; // Return the head and exit
+
+        }
+
+        curr_index += 1; // If not, increment the current index by 1
+
+        prev = curr; // Set prev to current element
+
+        curr = curr->next; // Move current to the next element
+
+    }
+ 
+   return head; // Return head if pos is not in range of length of list
+}
+
+// Function to DELETE a VALUE from a LL
+
+Node* deleteGivenValue(Node* head, int value){
+    
+    if(head == nullptr){ // Check if the list is empty
+
+        return nullptr; // Then return a nullptr
+
+    }
+    
+    if(head->data == value){ // Check if head has the given value
+
+        Node* temp = head; // Then set the head to a temp node
+
+        head = head->next; // Move head to the next node
+
+        delete temp; // Delete and free the memory
+
+        return head; // Return the new head and exit
+
+    }
+    
+    Node* curr = head; // Setting the current node to be the head
+
+    Node* prev = nullptr; // Setting the previous node to be a nullptr initially
+    
+    while(curr != nullptr){ // While the current is not nullptr 
+
+        if(curr->data == value){ // Check if current node has the value asked to remove 
+
+            prev->next = curr->next; // Then chain the previous and the next nodes
+
+            delete curr; // Delete the current Node and free memory
+
+            return head; // Return the head and exit
+
+        }
+        prev = curr; // Set prev to current element
+
+        curr = curr->next; // Move current to the next element
+
+    }
+ 
+   return head; // Return head if value is not in list
+}
+
+// Function to ADD at HEAD
+
+Node* addAtHead(Node* head, int value){
+    
+    Node* newHead = new Node(value); // Create a new node with the given value
+    
+    newHead->next = head; // Chaining the new head with the rest of the list
+    
+    return newHead; // Returning new head
+    
+}
+
+// Function to ADD at TAIL
+
+Node* addAtTail(Node* head, int value){
+    if(head == nullptr){ // If the list is empty
+
+        Node* newHead = new Node(value); // Create a new node with the given value
+
+        return newHead; // Return new head which will also be the tail and exit
+
+    }
+    
+    Node* curr = head; // Setting the current node to be the head
+
+    while(curr->next != nullptr){ // While current is not null
+
+        curr = curr->next; // Traverse to the last node
+ 
+   }
+    
+    curr->next = new Node(value); // Set the last node's next to be the new node
+    
+    return head; // Returning new head
+}
+
+// Function to ADD at a GIVEN POSITION
+
+Node* addAtPos(Node* head, int pos, int value){
+    if (head == nullptr) { // If the list is empty
+
+        if (pos == 1) { // Handle adding at position 1 when the list is empty
+
+            return new Node(value); // Create the first node
+        }
+
+        return nullptr; // If pos is greater than 1 and the list is empty, return nullptr
+    }
+    
+    if(pos == 1){ // If pos is 1, we need to add a new head
+
+        Node* newHead = new Node(value,head); // create a new node to point to head
+
+        return newHead; // return the new head
+    }
+    
+    Node* curr = head; // Setting the current node to be the head
+
+    Node* prev = nullptr; // Setting the previous node to be a nullptr initially
+
+    int curr_index = 1; // Set current index to be at 1
+    
+    while(curr != nullptr){ // While curr is not null
+
+        if(curr_index == pos){ // If current index is equal to given position
+
+            prev->next = new Node(value, curr);  // Link prev to the new node, and new node to curr
+
+            return head; // Return head and exit
+        }
+
+        curr_index += 1; // Increment current index
+
+        prev = curr; // Set Prev to current
+
+        curr = curr->next; // Move Curr to the next node
+    }
+    
+    return head; // Return the unchanged head if the position is beyond the list length
+}
+
+// Function to ADD at a given VALUE
+
+Node* addValueAtTarget(Node* head, int value, int target){
+    if (head == nullptr) { // If the list is empty, the target won't be present
+
+        return nullptr; // return nullptr and exit
+    }
+    
+    if(head->data == target){ // If head's data is equal to target, we need to add a new head
+
+        Node* newHead = new Node(value,head); // create a new node to point to head
+
+        return newHead; // return the new head
+    }
+    
+    Node* curr = head; // Setting the current node to be the head
+
+    Node* prev = nullptr; // Setting the previous node to be a nullptr initially
+
+    while(curr != nullptr){ // While curr is not null
+
+        if(curr->data == target){ // If current node value is equal to given target
+
+            prev->next = new Node(value, curr);  // Link prev to the new node, and new node to curr
+
+            return head; // Return head and exit
+        }
+        prev = curr; // Set Prev to current
+
+        curr = curr->next; // Move Curr to the next node
+ 
+   }
+    
+    return head; // Return the unchanged head if the target doesn't exist in the list
+}
+
+//
