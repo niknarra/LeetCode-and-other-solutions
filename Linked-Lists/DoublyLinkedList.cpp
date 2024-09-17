@@ -46,3 +46,165 @@ Node* arrayToDLL(int arr[], int n){ // n is assumed to be the length of array
 return head; // Return the head
 }
 
+--------- Deletions ---------
+
+// Function to DELETE the HEAD of DLL
+
+Node* deleteHeadOfDLL(Node* head){
+  if(head == nullptr){ // Check if the list is empty
+
+    return nullptr; // Return nullptr and exit
+  }
+  
+  Node* temp = head; // Separate the head from the rest of the list
+
+  head = head->next; // Move the head to the next node
+
+  if(head != nullptr){ // Check if the list is not empty
+ 
+   head->prev = nullptr; // Set the previous node of the head to nullptr
+  }
+  
+  delete temp; // Free the memory of the old head
+  
+  return head; // Return the new head
+}
+
+// Function to DELETE the TAIL of DLL
+
+Node* deleteTailOfDLL(Node* head){
+  if(head == nullptr){ // Check if the list is empty
+
+    return nullptr; // Return nullptr and exit
+  }
+
+  Node* curr = head; // Create a node curr which is initially equal to head
+
+  while(curr->next != nullptr){ // Iterate until the next node is nullptr
+
+    curr = curr->next; // Move curr to the next node
+  }
+
+  if(head == curr){ // Check if the list has only one node
+
+    delete head; // Free the memory of the head
+
+    return nullptr; // Return nullptr and exit
+  }
+
+  curr->prev->next = nullptr; // Set the next node of the previous node to nullptr
+ 
+ delete curr; // Free the memory of the tail
+
+  return head; // Return the head
+}
+
+// Function to DELETE at a GIVEN POS
+
+Node* deleteAtPos(Node* head, int pos){ 
+  if(head == nullptr){ // Check if the list is empty
+  
+  return nullptr; // Return nullptr and exit
+  }
+
+  if(pos == 1){ // Check if the position is 1
+
+    Node* temp = head; // Separate the head from the rest of the list
+  
+  head = head->next; // Move the head to the next node
+
+    if (head != nullptr) { // Check if the list is not empty
+
+    head->prev = nullptr; // Set the previous node of the head to nullptr
+    }
+
+    delete temp; // Free the memory of the old head
+
+    return head; // Return the new head
+
+  }
+
+  int curr_index = 1; // Create a variable curr_index which is initially equal to 1
+
+  Node* curr = head; // Create a node curr which is initially equal to head
+
+  while(curr->next != nullptr){ // Iterate until the next node is nullptr
+
+    if(curr_index == pos){ // Check if the current index is equal to the position
+
+      if(curr->next != nullptr){ // Check if the next node is not nullptr
+
+      curr->prev->next = curr->next; // Set the next node of the previous node to the next node
+
+      curr->next->prev = curr->prev; // Set the previous node of the next node to the previous node
+
+      }
+    }else{
+
+      curr->prev->next = nullptr; // Set the next node of the previous node to nullptr
+    }
+      delete curr; // Free the memory of the current node
+
+      return head; // Return the head
+  }
+    }
+    curr_index += 1; // Increment the current index
+
+    curr = curr->next; // Move curr to the next node
+  }
+  return head; // Return the head
+}
+
+// Function to DELETE a GIVEN VALUE
+
+Node* deleteAtGivenValue(Node* head, int value){ 
+  if(head == nullptr){ // Check if the list is empty
+
+    return nullptr; // Return nullptr and exit
+  }
+
+  if(head->data == value){ // Check if the head's data is equal to the value
+
+    Node* temp = head; // Separate the head from the rest of the list
+
+    head = head->next; // Move the head to the next node
+
+    if(head!=nullptr){ // Check if the list is not empty
+
+      head->prev = nullptr; // Set the previous node of the head to nullptr
+    }
+    delete temp; // Free the memory of the old head
+
+    return head; // Return the new head
+  }
+
+  Node* curr = head; // Create a node curr which is initially equal to head
+  
+  while(curr != nullptr){ // Iterate until the current node is nullptr
+
+    if(curr->data == value){ // Check if the current node's data is equal to the value
+
+      if(curr->next != nullptr){ // Check if the next node is not nullptr
+
+        curr->prev->next = curr->next; // Set the next node of the previous node to the next node
+
+        curr->next->prev = curr->prev; // Set the previous node of the next node to the previous node
+      }
+      }else{
+
+        curr->prev->next = nullptr; // Set the next node of the previous node to nullptr
+      }
+      delete curr; // Free the memory of the current node
+
+      return head; // Return the head
+    }
+
+    curr = curr->next; // Move curr to the next node
+  }
+ 
+ return head; // Return the head
+}
+
+--------- Insertions ---------
+
+// 
