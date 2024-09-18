@@ -207,4 +207,24 @@ Node* deleteAtGivenValue(Node* head, int value){
 
 --------- Insertions ---------
 
-// 
+// Function to INSERT a NEW HEAD
+
+Node* insertAtHead(Node* head, int value){
+  if(head == nullptr){ // Check if the list is empty
+
+    Node* newHead = new Node(value); // Create a new node with the value
+
+    return newHead; // Return the new head and exit
+  }
+
+  Node* temp = new Node(value); // Create a new node with the value
+
+  temp->next = head; // Set the next node of the new node to the head
+
+  temp->prev = nullptr; // Set the previous node of the new node to nullptr
+ 
+  head->prev = temp; // Set the previous node of the head to the new node and chain
+
+  return temp; // Return the new head
+} 
+
