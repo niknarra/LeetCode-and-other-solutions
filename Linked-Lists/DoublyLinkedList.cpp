@@ -228,3 +228,33 @@ Node* insertAtHead(Node* head, int value){
   return temp; // Return the new head
 } 
 
+// Function to INSERT AFTER HEAD
+
+Node* insertAfterHead(Node* head, int value){
+
+  if(head == nullptr){ // Chec if the list is empty
+
+    Node* newHead = new Node(value); // Create a new head with the value
+
+    retrun newHead; // Rerturn the new head and exit
+  }
+  
+  Node* temp = new Node(value); // Create a new node with the value
+
+  temp->prev = head; // Set the previous node of the new node to the head
+
+  temp->next = head->next; // Set the next node of the new node to the next node of the head
+
+  if (head->next != nullptr) { // Chack if the next node of the head is not nullptr
+ 
+     head->next->prev = temp; // If not, set the previous node of the next node of the head to the new node
+  }
+
+  head->next = temp; // Set the next node of the head to the new node and chain
+
+  return head; // Return the head
+}
+
+// Function to INSERT at GIVEN POS
+
+
