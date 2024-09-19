@@ -257,4 +257,52 @@ Node* insertAfterHead(Node* head, int value){
 
 // Function to INSERT at GIVEN POS
 
+Node* insertAtPos(Node* head, int pos, int value) {
 
+  if(head==nullptr){ // Check if the list is empty
+
+    return nullptr; // Return nullptr and exit
+  }
+  
+  if (pos == 1) { // If the position is 1
+    Node* newHead = new Node(value); // Create a new head with the value
+
+    newHead->next = head; // Set the next node of the new head to the head
+
+    if (head != nullptr) { // Check if the head is not nullptr
+
+      head->prev = newHead; // If not, set the previous node of the head to the new head
+    }
+
+    return newHead;  // Return new head and exit
+  }
+
+  int curr_index = 1; // Create a variable curr_index which is initially equal to 1
+
+  Node* curr = head; // Create a node curr which is initially equal to head
+
+  while (curr != nullptr) { // Iterate until the current node is nullptr
+
+      if (curr_index == pos) { // Check if the current index is equal to the position
+
+          Node* newNode = new Node(value); // Create a new node with the value
+
+          newNode->prev = curr->prev; // Set the previous node of the new node to the previous node of the current node
+
+          newNode->next = curr; // Set the next node of the new node to the current node
+
+          curr->prev->next = newNode; // Set the next node of the previous node of the current node to the new node
+
+          curr->prev = newNode; // Set the previous node of the current node to the new node and chain
+
+          return head; // Return the head
+      }
+      curr = curr->next; // Move curr to the next node
+  
+    curr_index += 1; // Increment the current index
+  }
+  
+  return head; // Return the head
+}
+
+// Function to INSERT at TAIL
