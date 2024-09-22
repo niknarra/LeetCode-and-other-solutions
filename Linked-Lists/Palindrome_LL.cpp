@@ -1,4 +1,7 @@
-
+// Approach 1 - Brute Force
+// Use a Stack
+// TC: O(2n) => O(n)
+// SC: O(n) -> Not ideal
 
 // Approach 2 - Swapping the Links
 // TC: O(n + n/2 + n/2) => O(2n) => O(n)
