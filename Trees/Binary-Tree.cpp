@@ -21,4 +21,17 @@ struct Node{
 
 // Or we can also use Class, but we need to make the members public as class members are private by default.
 
+class Node{
+
+public:
+	int data;
+	Node* left;
+	Node* right;
+
+	Node(int newData){
+		data = newData;
+		left = right = nullptr;
+	}	
+};
+
 
