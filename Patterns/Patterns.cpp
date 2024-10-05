@@ -465,15 +465,43 @@ void pattern12(int size){ // Reversed Equilateral Triangle with spacing in betwe
 
 }
 
-// void pattern13(int size){
+void pattern13(int size){
 
-//     for(int i=0;i<size;i+=1){
+    for(int i=0;i<size;i+=1){
 
-//         for(int j)
+        for(int j=i;j<size-1;j+=1){
+            cout<<" ";
+        }
 
-//     }
+        for(int k=0; k<2*i+1; k+=1){
+                    if(k == 0 || k == 2*i || i == size-1){
+                        cout << "*";
+                    } else {
+                        cout << " ";
+                    }
+                }
+        cout<<endl;
+    }
+}
 
-// }
+void pattern14(int size){
+
+    for(int i=0;i<size;i+=1){
+
+        for(int j=i;j<size-1;j+=1){
+            cout<<" ";
+        }
+
+        for(int k=0; k<2*i+1; k+=1){
+                    if(k == 0 || k == 2*i || i == size-1){
+                        cout << " ";
+                    } else {
+                        cout << "*";
+                    }
+                }
+        cout<<endl;
+    }
+}
 
 void pattern18(int size){
 
@@ -673,7 +701,7 @@ int main(){
 
 	cout<<"Welcome to Patterns"<<endl;
 
-	pattern28(5);
+	pattern14(5);
 
 	return 0;
 
