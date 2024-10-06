@@ -49,3 +49,42 @@ public:
     }
 };
 
+
+// More Optimal Solution
+
+class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if (!head || !head->next || k == 0) {
+            return head;
+        }
+        
+        ListNode* tail = head;
+        int len = 1;
+        
+        while (tail->next) {
+            tail = tail->next;
+            len++;
+        }
+        
+        k = k % len;
+        if (k == 0) {
+            return head;
+        }
+        
+        // Finding the new head and tail
+        int newTailPos = len - k;
+        ListNode* newTail = head;
+        
+        for (int i = 1; i < newTailPos; i++) {
+            newTail = newTail->next;
+        }
+        
+        ListNode* newHead = newTail->next;
+        newTail->next = nullptr;
+        tail->next = head; // Connect the old tail to the old head
+        
+        return newHead;
+    }
+};
+

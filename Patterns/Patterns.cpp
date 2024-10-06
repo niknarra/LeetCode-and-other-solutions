@@ -604,7 +604,7 @@ void pattern21(int size){
 
     for(int i=1;i<=size;i+=1){
 
-        for(int j=i+(i-1);j<=size;j+=1){
+        for(int j=i;j<=i;j+=1){
 
             cout<<i;
 
@@ -701,7 +701,7 @@ int main(){
 
 	cout<<"Welcome to Patterns"<<endl;
 
-	pattern14(5);
+	pattern21(5);
 
 	return 0;
 
