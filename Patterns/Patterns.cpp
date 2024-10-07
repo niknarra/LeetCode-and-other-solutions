@@ -503,6 +503,42 @@ void pattern14(int size){
     }
 }
 
+void pattern17(int size){
+    for(int i=1;i<=size;i+=1){
+
+        for(int space=0;space<size-i;space+=1){
+            cout<<" ";
+        }
+
+        for(int j=i;j>=1;j-=1){
+            cout<<j;
+        }
+
+        for(int k=2;k<=i;k+=1){
+            cout<<k;
+        }
+
+        cout<<endl;
+    }
+
+    for(int lower=size-1;lower>0;lower-=1){
+
+        for(int space=0;space<size-lower;space+=1){
+            cout<<" ";
+        }
+
+        for(int l=lower;l>=1;l-=1){
+            cout<<l;
+        }
+
+        for(int m=2;m<=lower;m+=1){
+            cout<<m;
+        }
+
+    cout<<endl;
+    }
+}
+
 void pattern18(int size){
 
     // Upper Half
@@ -655,6 +691,24 @@ void pattern28(int size){
     }
 }
 
+void pattern30(int size){
+    for(int i=1;i<=size;i+=1){
+
+        for(int space=(2*size)-i;space>=i;space-=1){
+            cout<<" ";
+        }
+
+        for(int j=i;j>=1;j-=1){
+            cout<<j<<" ";
+        }
+
+        for(int k=2;k<=i;k+=1){
+            cout<<k<<" ";
+        }
+        cout<<endl;
+    }
+}
+
 void pattern32(char size){
 
     for(char i=size;i>='A';i-=1){
@@ -701,7 +755,7 @@ int main(){
 
 	cout<<"Welcome to Patterns"<<endl;
 
-	pattern21(5);
+	pattern17(5);
 
 	return 0;
 
