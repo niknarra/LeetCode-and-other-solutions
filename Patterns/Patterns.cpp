@@ -638,12 +638,68 @@ void pattern20(int size){
 
 void pattern21(int size){
 
+    int num = 1;
+
     for(int i=1;i<=size;i+=1){
 
-        for(int j=i;j<=i;j+=1){
+        for(int j=0;j<i;j+=1){
 
-            cout<<i;
+            cout<<num<<" ";
+            num ++;
+        }
+        cout<<endl;
+    }
+}
 
+void pattern21V2(int size) {
+
+    for(int i=1; i<=size; i+=1) {
+        int start = (i * (i - 1)) / 2 + 1;
+
+        for(int j=0; j<i; j+=1) {
+            cout << start + j << " ";
+        }
+        cout << endl;
+    }
+}
+
+void pattern22(int size){
+
+    for(int i=1;i<=size;i+=1){
+
+        if(i%2 == 0){
+            for(int j=0;j<i;j+=1){
+                if(j%2==0){
+                    cout<<0;
+                }
+                else {
+                    cout<<1;
+                }
+            }
+        }
+        else{
+            for(int j=1;j<=i;j+=1){
+                if(j%2==0){
+                    cout<<0;
+                }
+                else {
+                    cout<<1;
+                }
+            }
+        }
+        cout<<endl;
+    }
+}
+
+void pattern22V2(int size){
+
+    for(int i=1;i<=size;i+=1){
+
+        int start = (i % 2 == 0) ? 0 : 1;
+
+        for(int j=1;j<=i;j+=1){
+            cout<<start;
+            start = 1 - start;
         }
         cout<<endl;
     }
@@ -658,6 +714,28 @@ void pattern26(int size){
             cout<<i;
 
         }
+        cout<<endl;
+    }
+}
+
+void pattern27(int size){
+
+    int num = 1;
+    int right_start;
+
+    for(int i=0;i<size;i+=1){
+
+        for(int space=0;space<i*2;space+=1){
+            cout<<"-";
+        }
+
+        for(int j=i;j<size;j+=1){
+
+            cout<<num<<" ";
+            num++;
+
+        }
+
         cout<<endl;
     }
 }
@@ -720,6 +798,28 @@ void pattern32(char size){
     }
 }
 
+void pattern33(int size){
+
+    char start = 'a';
+
+    for(int i=0;i<size;i+=1){
+
+        for(int j=0;j<=i;j+=1){
+            cout<<start<<" ";
+            start++;
+            if(islower(start)){
+                start -= 32;
+            } else {
+                start += 32;
+            }
+        }
+
+
+        cout<<endl;
+    }
+
+}
+
 void pattern34(char size){
 
     for(char i=size;i>='A';i-=1){
@@ -755,7 +855,7 @@ int main(){
 
 	cout<<"Welcome to Patterns"<<endl;
 
-	pattern17(5);
+	pattern33(5);
 
 	return 0;
 
