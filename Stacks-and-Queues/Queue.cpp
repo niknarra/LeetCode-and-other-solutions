@@ -69,3 +69,85 @@ public:
     }
 };
 
+// Implementing Queue using Linked List
+
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int val;
+    Node* next;
+    
+    Node(int newVal) {
+        this->val = newVal;
+        this->next = nullptr;
+    }
+};
+
+class llQueue {
+    Node* front = nullptr;
+    Node* back = nullptr;
+
+public:
+    int length = 0;
+
+    // Pushes an element to the back of the queue
+    void push(int x) {
+        Node* temp = new Node(x);
+        if (front == nullptr) {
+            front = temp;
+            back = front;
+        } else {
+            back->next = temp;
+            back = temp;
+        }
+        length += 1;
+    }
+
+    // Pops an element from the front of the queue
+    void pop() {
+        if (front != nullptr) {
+            Node* temp = front;
+            front = front->next;
+            length -= 1;
+            delete temp;
+            if (front == nullptr) { // Reset back when queue is empty
+                back = nullptr;
+            }
+        } else {
+            cout << "Queue is Empty!" << endl;
+        }
+    }
+
+    // Returns the size of the queue
+    int size() {
+        return length;
+    }
+
+    // Peeks at the front element of the queue
+    int peek_front() {
+        if (front != nullptr) {
+            return front->val;
+        } else {
+            cout << "Queue is Empty!" << endl;
+            return -1; // Or throw an exception
+        }
+    }
+
+    // Peeks at the back element of the queue
+    int peek_back() {
+        if (back != nullptr) {
+            return back->val;
+        } else {
+            cout << "Queue is Empty!" << endl;
+            return -1; // Or throw an exception
+        }
+    }
+
+    // Checks if the queue is empty
+    bool empty() {
+        return front == nullptr;
+    }
+};
+

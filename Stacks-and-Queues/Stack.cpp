@@ -45,3 +45,78 @@ public:
     }
 };
 
+
+// Implementing Stack using Linked List
+
+// Node Class
+class Node{
+    public:
+    
+    int val;
+    Node* next;
+    
+    Node(int newVal){
+        this->val = newVal;
+        this->next = nullptr;
+    }
+    
+    Node(int newVal, Node* newNext){
+        this->val = newVal;
+        this->next = newNext;
+    }
+};
+
+// Stack with LL
+class llStack{
+    
+    Node* top = nullptr;
+    
+    public:
+    
+    int length = 0;
+    
+    llStack(){
+        
+    }
+    
+    void push(int x){
+        
+        Node* temp = new Node(x, top);
+        top = temp;
+        length += 1;
+        
+    }
+    
+    void pop(){
+        
+        if(top!=nullptr){
+        Node* temp = top;
+        top = top->next;
+        length -= 1;
+        
+        delete temp;
+        }
+        else{
+            cout<<"Stack Empty!";
+        }
+    }
+    
+    int size(){
+        return length;
+    }
+    
+    int peek(){
+       if(top!=nullptr) return top->val;
+       
+       return -1;
+    }
+    
+    void empty(){
+        
+        return (top==nullptr);
+        
+    }
+    
+};
+
+
