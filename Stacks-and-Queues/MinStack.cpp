@@ -1,87 +1,88 @@
 // Implementing a MinStack using a Stack
 
-class Stack{
+#include <bits/stdc++.h>
+using namespace std;
+
+class Stack {
+    pair<int, int> top = {-1, -1};
+    pair<int, int> st[10];  
+    int length = -1;
+
 public:
-    int top = -1;
-    int st[10]; // Array of fixed size 10
-
-    // Push an element onto the stack
-    void push(int x){
-        if(top < 9){ // Ensure stack does not overflow
-            top += 1;
-            st[top] = x;
+    void push(pair<int, int> x) {  
+        if (length < 9) {  
+            length += 1;
+            top = x;  
+            st[length] = top;
         } else {
-            std::cout << "Stack overflow!" << std::endl;
+            cout << "Stack is full!";
         }
     }
 
-    // Peek at the top element without removing it
-    int peek(){
-        if(top != -1){
-            return st[top];
+    pair<int, int> peek() {  
+        return top;
+    }
+
+    void pop() {
+        if (length > 0) {
+            top = st[length - 1];
+            length -= 1;
+        } else if (length == 0) {
+            length -= 1;
+            top = {-1, -1};
         } else {
-            std::cout << "Stack is empty!" << std::endl;
-            return -1;
+            cout << "Stack is empty!";
         }
     }
 
-    // Pop an element off the stack
-    void pop(){
-        if(top != -1){
-            top -= 1;
-        } else {
-            std::cout << "Stack is empty!" << std::endl;
-        }
+    int size() {
+        return length + 1;
     }
 
-    // Check if the stack is empty
-    bool empty(){
-        return (top == -1);
-    }
-
-    // Get the size of the stack
-    int size(){
-        return top + 1;
+    bool empty() {
+        return length == -1;
     }
 };
 
-// MinStack Class
-// PS. The above Stack Class is not designed to handle Pairs and expects int, so this code will cause errors but the logic is solid
 
-class minStack{
+class MinStack{
   
   Stack st;
   pair<int,int> top = {-1,INT_MAX};
-  int length = 0;
-  
+
   public:
   
-  void push(int x){
-        int currentMin = st.empty() ? x : min(x, st.top().second);
-        st.push({x, currentMin});
-        length += 1;
+  void push(int x) {
+    if (st.empty() || x < top.second) {
+        st.push({x, x});  
+    } else {
+        st.push({x, top.second});  
     }
-  
-  void pop(){
-      st.pop();
-      length -= 1;
+    top = st.peek();  
   }
   
-  int top(){
-      return st.top().first;
+  void pop(){
+    st.pop();
+    top = st.peek();
+  }
+  
+  pair<int,int> peek(){
+      return top;
+  }
+  
+  int min(){
+      if (top.second != INT_MAX) return top.second;
+      
+      return -1;
+  }
+  
+  int size(){
+      return st.size();
   }
   
   bool empty(){
       return st.empty();
   }
-  
-  int size(){
-      return length;
-  }
-  
-  int min(){
-      return st.top().second;
-  }
-  
+
 };
 
