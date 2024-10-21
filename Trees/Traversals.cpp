@@ -58,4 +58,36 @@ void inOrder(Node* root){
 // BFS
 // Level Traversal
 
+void levelTraversal(Node* root){
+
+	if(root==nullptr){
+		cout<<"Tree is empty";
+		return;
+	}
+
+	
+	dequeue<Node*> q;
+	q.push_back(root);
+
+	while(!q.empty()){
+	
+		Node* curr = q.front();
+		q.pop_front();
+		cout<<curr->val<<" ";
+	
+		if(curr->left){
+		
+			q.push_back(curr->left);			
+
+		}	
+		
+		if(curr->right){
+
+			q.push_back(curr->right);			
+
+		}
+		
+	}
+
+}
 
