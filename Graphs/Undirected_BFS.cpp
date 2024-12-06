@@ -3,6 +3,7 @@ using namespace std;
 
 // TC: O(nodes+edges)
 // SC: O(nodes)
+// Approach 1 - Handles an undirected connected graph
 
 void bfs(int start, int nodes, vector<vector<int>> adj){
     vector<int> vis(nodes+1, 0); // O(nodes)
@@ -28,6 +29,22 @@ void bfs(int start, int nodes, vector<vector<int>> adj){
     }
     
 }
+
+// Approach 2 - Handles an undirected disconnected graph
+// Keep the above bfs function as is, but introduce a helper function to make sure all the nodes are visited
+
+vector<int> bfsOfGraph(int start, vector<vector<int>>& adj){
+    vector<int> bfs_list;
+    vector<int> vis(adj.size(), 0);
+    
+    for(int i=1;i<=adj.size();i+=1){
+        if(!vis[i]){
+            bfs(i, adj, vis, bfs_list);          
+        }
+    }
+    return bfs_list;
+}
+
 
 int main() {
     cout << "Graphs"<<endl;
