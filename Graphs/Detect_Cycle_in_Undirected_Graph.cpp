@@ -40,3 +40,37 @@ class Solution {
         return false;
     }
 };
+
+// Approach 2 - DFS
+
+class Solution {
+  public:
+  // Recursive helper function for DFS  
+  bool detectCycle(int node, int parent, vector<vector<int>>& adj, vector<int>& vis){
+        vis[node] = 1; // Mark the current starting node as visited
+        
+	// Perform DFS for the current node
+        for(auto adjNode:adj[node]){
+            // If the adjacent node for the current node is already visited and it is not the parent,
+            // We have a cycle, we can return true
+            if(parent != adjNode && vis[adjNode]) return true;
+            // If not visited, we perform DFS for the adjacent node
+            else if(!vis[adjNode]){
+                if(detectCycle(adjNode, node, adj, vis) == true) return true;
+            }
+        }
+        return false;
+    }
+    // Function to detect cycle in an undirected graph.
+    bool isCycle(vector<vector<int>>& adj) {
+        int n = adj.size();
+        vector<int> vis(n,0);
+        
+        for(int i=0;i<n;i+=1){
+            if(!vis[i]){
+                if(detectCycle(i, -1, adj, vis) == true) return true;
+            }
+        }
+        return false;
+    }
+};
