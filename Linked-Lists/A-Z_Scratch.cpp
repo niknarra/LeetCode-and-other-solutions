@@ -298,7 +298,7 @@ Node* listSorter(Node* head){
     Node* middle = getMiddle(head);
     Node* right = middle->next;
     middle->next = nullptr;
-    left = head;
+    Node* left = head;
 
     Node* leftHalf = listSorter(left);
     Node* rightHalf = listSorter(right);
@@ -386,6 +386,40 @@ Node* addTwoNumbers(Node* p, Node* q){
 
     return listReverser(dummyHead->next);
 }
+
+Node* addOne(Node* head){
+    if (head == nullptr) return new Node(1);
+    int carry = 1;
+
+    Node* dummyHead = new Node(-1);
+    Node* curr_rev = dummyHead;
+
+    Node* reversed = listReverser(head);
+    Node* curr = reversed;
+
+    while(curr != nullptr && carry != 0){
+        int curr_digit = curr->val;
+        int sum = curr_digit+carry;
+
+        carry = sum / 10;
+        int digit = sum % 10;
+
+        Node* temp = new Node(digit);
+        curr_rev->next = temp;
+        curr_rev = curr_rev->next;
+
+        curr = curr->next;
+
+    }
+
+    if(carry == 1){
+        curr_rev->next = new Node(1);
+    }
+
+    Node* res = listReverser(dummyHead->next);
+    return res;
+}
+
 
 
 int main() {
