@@ -9,7 +9,7 @@ int main() {
     int nodes, edges;
     cin >> nodes >> edges;
     int adj[nodes+1][nodes+1] = {0};
-    
+
     for(int i=0;i<edges;i+=1){
         int u,v;
         cin >> u >> v;
@@ -20,7 +20,7 @@ int main() {
     return 0;
 }
 
-// Assuming the input to be as follows - 
+// Assuming the input to be as follows -
 // 3 4
 // 1 2
 // 2 3
@@ -36,7 +36,7 @@ int main() {
     int nodes, edges;
     cin >> nodes >> edges;
     vector<vector<int>> adj[nodes+1];
-    
+
     for(int i=0;i<edges;i+=1){
         int u,v;
         cin >> u >> v;
@@ -50,7 +50,7 @@ int main() {
 // Here, we have a vector for each node that stores its neighbors
 // The overall SC will be better than a adj matrix -> SC: O(nodes + edges)
 
-// Directed Graph 
+// Directed Graph
 // We can use the same 2 approaches as an undirected graph. But, here the edges are directed, so the mapping will be done only once
 
 // List
@@ -59,7 +59,7 @@ int main() {
     int nodes, edges;
     cin >> nodes >> edges;
     vector<vector<int>> adj[nodes+1];
-    
+
     for(int i=0;i<edges;i+=1){
         int u,v;
         cin >> u >> v;
@@ -81,7 +81,7 @@ int main() {
     int nodes, edges;
     cin >> nodes >> edges;
     int adj[nodes+1][nodes+1] = {0};
-    
+
     for(int i=0;i<edges;i+=1){
         int u,v,wt;
         cin >> u >> v >> wt;
@@ -99,7 +99,8 @@ int main() {
     int nodes, edges;
     cin >> nodes >> edges;
     vector<vector<pair<int,int>>> adj[nodes+1];
-    
+    vector<int> res;
+
     for(int i=0;i<edges;i+=1){
         int u,v, wt;
         cin >> u >> v >> wt;
@@ -108,4 +109,37 @@ int main() {
     }
 
     return 0;
+}
+
+// Breadth First Search
+void bfs(vector<vector<int>> &graph, vector<int> &vis, int start, vector<int> &res){
+  queue<int> q;
+  q.push(start);
+
+  while (!q.empty()){
+    int node = q.front();
+    q.pop();
+
+    vis[node] = 1;
+    res.push_back(node);
+
+    for(int neighbor: graph[node]){
+      if (!vis[neighbor]){
+        vis[neighbor] = 1;
+        q.push(neighbor);
+      }
+    }
+  }
+}
+
+// Depth First Search
+void dfs(vector<vector<int>> &graph, vector<int> &vis, int start, vector<int> &res){
+  vis[start] = 1;
+  res.push_back(start);
+
+  for(int neighbor:graph[start]){
+    if (!vis[neighbor]){
+      dfs(graph, vis, neighbor, res);
+    }
+  }
 }
